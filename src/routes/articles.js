@@ -4,6 +4,17 @@ const Article = require("../models/article")
 const router = new Router();
 
 router.get('/', (req, res, next) => {
+  const { search_text } = req.query;
+  if (search_text) {
+    const reg = new RegExp(search_text);
+    Article.find({$or: [{title: {$regex: reg}}, {content: reg}]}, (err, articles) => {
+      if (err) return next(err);
+      // res.setHeader('Content-Type', 'application/json;charset=utf-8');
+      const result = {"articles": articles};
+      res.send(result);
+    });
+    return;
+  }
   Article.find({}, (err, articles) => {
     if (err) return next(err);
     // res.setHeader('Content-Type', 'application/json;charset=utf-8');
