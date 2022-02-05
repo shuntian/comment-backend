@@ -21,6 +21,18 @@ router.get('/', (req, res, next) => {
     const result = {"articles": articles};
     res.send(result);
   });
+});
+
+router.post('/', (req, res, next) => {
+  const { article } = req.body;
+  const articleObj = new Article(article);
+  articleObj.save((err) => {
+    if (err) next(err);
+    res.send({
+      code: 0,
+      article: article
+    });
+  })
 })
 
 router.get('/:id', (req, res, next) => {
