@@ -7,6 +7,10 @@ const ArticleSchema = new mongoose.Schema({
   content: String,
   comments: Array,
   author: String,
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+  }
 });
 
 const Article = connection.model('Article', ArticleSchema);

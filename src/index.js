@@ -1,7 +1,8 @@
 const express = require('express');
 const cors = require('cors');
-const articlesRouter = require('./routes/articles');
 const bodyParser = require('body-parser');
+const articlesRouter = require('./routes/articles');
+const usersRouter = require('./routes/users');
 
 const app = express();
 const corsModule = cors({
@@ -12,6 +13,7 @@ const corsModule = cors({
 
 app.use(corsModule);
 app.use(bodyParser.json());
+app.use('/users', usersRouter);
 app.use('/articles', articlesRouter);
 
 app.listen(8000, () => {
