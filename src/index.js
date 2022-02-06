@@ -13,8 +13,8 @@ const corsModule = cors({
 
 app.use(corsModule);
 app.use(bodyParser.json());
-app.use('/users', usersRouter);
-app.use('/articles', articlesRouter);
+app.use('/api/v1/users', usersRouter);
+app.use('/api/v1/articles', articlesRouter);
 
 app.listen(8000, () => {
   console.log('you can visit http://127.0.0.1:8000 to visit comment api');
